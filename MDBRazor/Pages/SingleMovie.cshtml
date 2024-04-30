@@ -1,0 +1,35 @@
+﻿@page
+@model MDBRazor.Pages.SingleMovieModel
+@{
+}
+
+<div class="text-center">
+    <h1 class="display-4">Vald Film</h1>
+</div>
+
+@{
+    var textColour = "black";
+}
+
+@if (@Model.Movie.Results.PrimaryImage.Caption.PlainText == "Filmbeskrivning saknas")
+{
+    textColour = "red";
+}
+
+<div class="d-flex justify-content-center m-5">
+    <div class="card text-center" style="width: 18rem;">
+        <img class="card-img-top" src="@Model.Movie.Results.PrimaryImage.URL" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Movie.Results.TitleText.text</h5>
+            
+            <p class="card-text" style="color:@textColour; font-style:italic">@Model.Movie.Results.PrimaryImage.Caption.PlainText</p>
+            <div class="d-flex justify-content-around">
+                <a href="https://www.imdb.com" target="_blank" class="btn btn-primary">IMDB</a>
+                <a asp-page="/Index" class="btn btn-secondary">Tillbaka</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

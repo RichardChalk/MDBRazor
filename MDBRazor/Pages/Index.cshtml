@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Rapid API Filmdatabas - Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Välkommen</h1>
+    <h1>Samtliga Filmer</h1>
+
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Filmtitel</th>
+            <th scope="col">År</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var film in Model.Movies.Results)
+        {
+            <tr>
+                <td>@film.id</td>
+                <td>@film.TitleText.text</td>
+                <td>@film.ReleaseYear.year</td>
+                <td>
+                    <a asp-page="/SingleMovie"
+                       asp-route-movieId="@film.id"
+                       class="btn btn-success">
+                        Läs mer
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
